@@ -4,12 +4,13 @@ import homeImg from './../../assets/images/picture1.png';
 
 function Home() {
     return (
-        <>
-        <h1>Peanut</h1>
-        <h2>Enjoy your meal</h2>
-        
-        <img src={homeImg} />
-        </>
+        <main className='home'>
+            <div className='home__heading-container'>
+                <h1 className='home__logo header'>Peanut</h1>
+                <h1 className='home__slogan header--slogan'>Enjoy every bite</h1>
+            </div>
+            <div className='home__hero'></div>
+        </main>
     );
 }
 

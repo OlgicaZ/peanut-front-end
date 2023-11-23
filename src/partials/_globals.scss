@@ -1,0 +1,16 @@
+@use './typography' as *;
+@use './variables' as *;
+
+* {
+    color: $peanut-black;
+}
+
+.header {
+    font-family: 'Playfair Display';
+    color: $peanut-byzantium;
+
+    &--slogan {
+        font-family: 'Playfair Display';
+        color: $peanut-brick;
+    }
+}
