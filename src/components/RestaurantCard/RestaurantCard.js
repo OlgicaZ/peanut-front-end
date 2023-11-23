@@ -13,7 +13,7 @@ function RestaurantCard( {restaurant} ) {
                 <img className="restaurant-card__image" src={imageUrl}  alt={name} />
             </div>
             <div className="restaurant-card__description-container">
-                <h3 className="section-header">{name}</h3>
+                <h3 className="restaurant-card__header section-header">{name}</h3>
                 <p className="section-body">{description}</p>
             </div>
         </div>
