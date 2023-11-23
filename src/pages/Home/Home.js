@@ -5,9 +5,8 @@ import homeImg from './../../assets/images/picture1.png';
 function Home() {
     return (
         <>
-        <div>
-        Hi
-        </div>
+        <h1>Peanut</h1>
+        <h2>Enjoy your meal</h2>
         
         <img src={homeImg} />
         </>
