@@ -1,0 +1,32 @@
+@use './../../partials/mixins' as *;
+@use './../../partials/variables' as *;
+
+.restaurant-card {
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: .625rem;
+
+    @include rounded-container;
+
+    &__image-container {
+        width: 25%;
+        margin-right: .625rem;
+        border-radius: $border-radius;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius;
+    }
+
+    &__description-container {
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
