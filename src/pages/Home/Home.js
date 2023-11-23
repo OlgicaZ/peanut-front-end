@@ -9,7 +9,7 @@ function Home() {
         Hi
         </div>
         
-        {/* <img src={homeImg} /> */}
+        <img src={homeImg} />
         </>
     );
 }
