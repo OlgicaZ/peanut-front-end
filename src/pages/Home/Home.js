@@ -1,8 +1,18 @@
 import './Home.scss';
 
-import homeImg from './../../assets/images/picture1.png';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setTimeout(() => {
+            navigate('/restaurants');
+        }, 3000);
+    }, [])
+
     return (
         <main className='home'>
             <div className='home__heading-container'>
