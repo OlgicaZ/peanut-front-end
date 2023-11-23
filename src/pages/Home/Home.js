@@ -5,8 +5,11 @@ import homeImg from './../../assets/images/picture1.png';
 function Home() {
     return (
         <>
+        <div>
         Hi
-        <img src={homeImg} />
+        </div>
+        
+        {/* <img src={homeImg} /> */}
         </>
     );
 }
