@@ -10,8 +10,21 @@ const mapContainerStyle = {
 };
 
 const center = {
-    lat: 25.80006,
-    lng: -80.19947,
+    lat: 25.80012,
+    lng: -80.202813,
+};
+
+const mapOptions = {
+    // Customize map options here
+    disableDefaultUI: true, // Hide default UI components (e.g., zoom control)
+    styles: [
+        {
+            featureType: 'poi',
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }], // Hide points of interest labels
+        },
+        // Add more styles as needed
+    ],
 };
 
 function GoogleMapComponent({ addresses }) {
@@ -67,7 +80,12 @@ function GoogleMapComponent({ addresses }) {
     return (
         <LoadScript googleMapsApiKey='AIzaSyADAbGy6K9_E5njq961RzpbsGk1Bb4oHiA'>
             {/* <LoadScript googleMapsApiKey={apiKey}>   */}
-            <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={15}>
+            <GoogleMap 
+                mapContainerStyle={mapContainerStyle} 
+                center={center} 
+                zoom={17}
+                options={mapOptions}
+            >
                 {locations.map((location, index) => (
                     <Marker
                         key={index}
