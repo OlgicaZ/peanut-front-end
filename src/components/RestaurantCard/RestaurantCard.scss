@@ -8,7 +8,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: .625rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    &:hover {
+        cursor: grab;
+        background-color: $peanut-sand;
+    }
 
     @include rounded-container;
 

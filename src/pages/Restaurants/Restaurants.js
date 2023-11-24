@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function Restaurants() {
 
-    const categoryOptions = ['Japanese', 'Indian', 'American', 'Mexican', 'Italian', 'Vegetarian/Vegan', 'Nediterranean'];
+    const categoryOptions = ['Japanese', 'Indian', 'American', 'Mexican', 'Italian', 'Vegetarian/Vegan', 'Mediterranean'];
 
     const [restaurants, setRestaurants] = useState(null);
     const [addresses, setAddresses] = useState(null);
