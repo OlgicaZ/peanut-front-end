@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import Restaurants from './pages/Restaurants/Restaurants';
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>

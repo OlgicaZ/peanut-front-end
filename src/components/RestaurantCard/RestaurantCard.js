@@ -2,9 +2,9 @@ import './RestaurantCard.scss'
 
 function RestaurantCard( {restaurant} ) {
 
-    const name = 'Pao by Paul Qui'
-    const description = 'A Filipino inspired restaurant blending bold flavors accross different continents.'
-    const imageUrl = 'https://thefoodiephysician.com/wp-content/uploads/2023/02/fullsizeoutput_327c.jpeg';
+    const name = restaurant.restaurant_name;
+    const description = restaurant.description;
+    const imageUrl = restaurant.image_url;
 
 
     return (        

@@ -1,0 +1,15 @@
+.maps-window {
+
+    display: flex;
+    flex-direction: row;
+
+    &__image-container {
+        width: 15vw;
+        //height: 6vhx;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+    }
+}
