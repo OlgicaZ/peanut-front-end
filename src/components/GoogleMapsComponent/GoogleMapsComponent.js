@@ -78,7 +78,8 @@ function GoogleMapComponent({ addresses }) {
     }, []);
 
     return (
-        <LoadScript googleMapsApiKey='AIzaSyADAbGy6K9_E5njq961RzpbsGk1Bb4oHiA'>
+        <LoadScript
+            googleMapsApiKey='AIzaSyADAbGy6K9_E5njq961RzpbsGk1Bb4oHiA'>
             {/* <LoadScript googleMapsApiKey={apiKey}>   */}
             <GoogleMap 
                 mapContainerStyle={mapContainerStyle} 
