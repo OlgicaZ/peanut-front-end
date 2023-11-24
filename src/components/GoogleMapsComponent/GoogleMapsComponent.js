@@ -85,7 +85,7 @@ function GoogleMapComponent({ addresses }) {
                             <div className='maps-window__image-container'>
                                 <img className='maps-window__image' src={selectedRestaurant.address.image_url} alt={selectedRestaurant.address.restaurant_name} />
                             </div>
-                            <h3 className='section-body'>{selectedRestaurant.address.restaurant_name}</h3>
+                            <h3 className='section-header maps-window__title'>{selectedRestaurant.address.restaurant_name}</h3>
                         </div>
                     </InfoWindow>
                 )}
