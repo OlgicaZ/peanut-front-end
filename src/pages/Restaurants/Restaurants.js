@@ -12,6 +12,7 @@ function Restaurants() {
     const categoryOptions = ['Japanese', 'Indian', 'American', 'Mexican', 'Italian', 'Vegetarian/Vegan', 'Mediterranean'];
 
     const [restaurants, setRestaurants] = useState(null);
+    const [filteredRestaurants, setFilteredRestaurants] = useState(null);
     const [addresses, setAddresses] = useState(null);
 
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -32,7 +33,8 @@ function Restaurants() {
             try {
                 const restaurantsResponse = await axios.get('http://localhost:8080/api/restaurants');
                 // console.log(restaurantsResponse.data);
-                setRestaurants(restaurantsResponse.data)
+                setRestaurants(restaurantsResponse.data);
+                setFilteredRestaurants(restaurantsResponse.data);
 
                 const addressesResponse = await axios.get('http://localhost:8080/api/restaurants/locations');
                 // console.log(addressesResponse.data);
@@ -42,7 +44,17 @@ function Restaurants() {
             }
         }
         fetchData();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+
+        if(restaurants) {
+            const filtered = restaurants.filter((restaurant) => restaurant.cuisine === selectedCategory);
+            console.log(filteredRestaurants);
+            setFilteredRestaurants(filtered);
+        }
+
+    }, [selectedCategory]);
 
     if (!restaurants || !addresses) {
         return (
@@ -85,7 +97,7 @@ function Restaurants() {
             </section >
             <section className='restaurants__card-container'>
                 {
-                    restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
+                    filteredRestaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
                 }
             </section>
         </main >

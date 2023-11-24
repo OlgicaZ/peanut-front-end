@@ -59,7 +59,6 @@ function GoogleMapComponent({ addresses }) {
 
         for (const address of addresses) {
             const googleAddress = `${address.street_address} ${address.city}, ${address.state}`;
-            console.log(googleAddress);
             const location = await fetchCoordinates(address);
             if (location) {
                 resolvedAddresses.push(location);
