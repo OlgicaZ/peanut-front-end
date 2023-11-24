@@ -1,32 +1,51 @@
+@use './../../partials/variables' as *;
+
 .restaurants {
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
 
     &__map-container {
-    
+        
     }
 
     &__filters-container {
-
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        padding: 1rem 0;
     }
 
     &__categories-container {
-
+        margin: 0 1rem;
+        display: flex;
+        flex-direction: column;
+        border: .0625rem solid $peanut-peach;
+        border-radius: $border-radius-rounded;
     }
 
     &__selected-option {
-
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.1rem 1rem;
     }
 
     &__drop-down-icon {
-
+        fill: $peanut-black;
     }
 
     &__categories-list {
-
+        list-style-type: none;
     }
 
     &__category-option {
+        padding: 0.5rem 1rem;
 
+        &:hover {
+            background-color: $peanut-sand;
+        }
     }
 
     &__card-container {

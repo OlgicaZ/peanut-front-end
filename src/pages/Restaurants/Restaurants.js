@@ -9,13 +9,13 @@ import axios from 'axios';
 
 function Restaurants() {
 
-    const categoryOptions = ['American', 'Japanese']
+    const categoryOptions = ['Japanese', 'Indian', 'American', 'Mexican', 'Italian', 'Vegetarian/Vegan', 'Nediterranean'];
 
     const [restaurants, setRestaurants] = useState(null);
     const [addresses, setAddresses] = useState(null);
 
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState('Please select');
+    const [selectedCategory, setSelectedCategory] = useState('Select Category');
 
     const toggleCategoryDropdown = () => {
         setIsCategoryOpen(!isCategoryOpen);

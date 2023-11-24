@@ -4,6 +4,8 @@
 
 * {
     font-family: 'Roboto';
+    font-size: .875rem;
+    font-weight: 500;
     color: $peanut-black;
     box-sizing: border-box;
     margin: 0;
@@ -48,5 +50,15 @@
 }
 
 .button {
-    
+    border: .0625rem solid $peanut-peach;
+    border-radius: $border-radius-rounded;
+    padding: .3438rem 0.75rem;
+
+    &:hover {
+        background-color: $peanut-sand;
+    }
+
+    &--selected {
+        background-color: $peanut-peach;
+    }
 }
