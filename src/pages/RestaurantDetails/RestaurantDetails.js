@@ -1,16 +1,22 @@
 import './RestaurantDetails.scss';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { mapDay, mapTime } from '../../utils/utils';
 
 function RestaurantDetails() {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [currentRestaurant, setCurrentRestaurant] = useState(null);
     const [businessHours, setBusinessHours] = useState(null);
+    const [isSelected, setIsSelected] = useState(false);
+
+    const handleSelection = () => {
+        navigate(`/restaurant-menu/${id}`)
+    }
 
     useEffect(() => {
 
@@ -34,27 +40,27 @@ function RestaurantDetails() {
     }
 
     return (
-        <main>
-            <div>
-                <img src={currentRestaurant.image_url} alt={currentRestaurant.description} />
+        <main className='restaurant-details'>
+            <div className='restaurant-details__hero'>
+                <img className='restaurant-details__image' src={currentRestaurant.image_url} alt={currentRestaurant.description} />
             </div>
-            <div>
-                <section>
-                    <div>
-                        <h1>{currentRestaurant.restaurant_name}</h1>
-                        <h2>{currentRestaurant.cuisine} Restaurant</h2>
+            <div className='restaurant-details__info-container'>
+                <section className='restaurant-details__header-container'>
+                    <div className='restaurant-details__header'>
+                        <h1 className='restaurant-details__name section-header'>{currentRestaurant.restaurant_name}</h1>
+                        <h2 className='restaurant-details__cuisine section-subheader'>{currentRestaurant.cuisine} Restaurant</h2>
                     </div>
-                    <div>View Menu</div>
+                    <div className='button' onClick={handleSelection}>View Menu</div>
                 </section>
-                <section>
-                    <h2>About</h2>
-                    <p>{currentRestaurant.about}</p>
+                <section className='restaurant-details__about-container'>
+                    <h2 className='section-subheader'>About</h2>
+                    <p className='restaurant-details__about-content'>{currentRestaurant.about}</p>
                 </section>
-                <section>
-                    <h2>Work Hours</h2>
-                    <ul>
+                <section className='restaurant-details__business-hours-container'>
+                    <h2 className='section-subheader'>Hours of Operation</h2>
+                    <ul className='restaurant-details__list'>
                         {
-                            businessHours.map((day) => <li>{mapDay(day.day)} : {day.open_time} {mapTime(day.open_time)} - {day.close_time} {mapTime(day.close_time)}</li>)
+                            businessHours.map((day) => <li key={day.id} className='restaurant-details__list-item'>{mapDay(day.day)} : {day.open_time} {mapTime(day.open_time)} - {day.close_time} {mapTime(day.close_time)}</li>)
                         }
                     </ul>
                 </section>

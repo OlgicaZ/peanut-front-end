@@ -5,7 +5,7 @@
 * {
     font-family: 'Roboto';
     font-size: .875rem;
-    font-weight: 500;
+    font-weight: 600;
     color: $peanut-black;
     box-sizing: border-box;
     margin: 0;
@@ -41,7 +41,7 @@
 .section-subheader {
     font-family: 'Roboto';
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .section-body {
@@ -50,7 +50,9 @@
 }
 
 .button {
-    border: .0625rem solid $peanut-peach;
+    width: fit-content;
+    height: fit-content;
+    border: .125rem solid $peanut-peach;
     border-radius: $border-radius-rounded;
     padding: .3438rem 0.75rem;
 

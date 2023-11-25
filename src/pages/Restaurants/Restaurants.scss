@@ -16,7 +16,7 @@
         margin: 0 1rem;
         display: flex;
         flex-direction: column;
-        border: .0625rem solid $peanut-peach;
+        border: .125rem solid $peanut-peach;
         border-radius: $border-radius-rounded;
     }
 
@@ -35,8 +35,9 @@
     &__close_icon {
         cursor: grab;
         fill: $peanut-black;
-        align-self: center;
+        align-self: flex-start;
         margin-left: 1rem;
+        margin-top: 0.2rem;
     }
 
     &__categories-list {
