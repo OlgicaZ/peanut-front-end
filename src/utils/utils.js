@@ -19,4 +19,14 @@ const mapDay = (day) => {
     }
 }
 
-export { mapDay }
+const mapTime = (time) => {
+    const [hours] = time.split(':').map(Number);
+
+    if (hours >= 0 && hours <= 11) {
+        return 'AM';
+    } else {
+        return 'PM';
+    }
+}
+
+export { mapDay, mapTime }

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+import { mapDay, mapTime } from '../../utils/utils';
+
 function RestaurantDetails() {
     const { id } = useParams();
 
@@ -52,7 +54,7 @@ function RestaurantDetails() {
                     <h2>Work Hours</h2>
                     <ul>
                         {
-                            businessHours.map((day) => <li>{day.day} : {day.open_time} - {day.close_time} </li>)
+                            businessHours.map((day) => <li>{mapDay(day.day)} : {day.open_time} {mapTime(day.open_time)} - {day.close_time} {mapTime(day.close_time)}</li>)
                         }
                     </ul>
                 </section>
