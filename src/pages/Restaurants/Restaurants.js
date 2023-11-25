@@ -1,6 +1,8 @@
 import './Restaurants.scss';
 
 import { ReactComponent as DropDownIcon } from './../../assets/icons/arrow_drop_down_black_24dp.svg';
+import { ReactComponent as CloseIcon } from './../../assets/icons/close_black_24dp.svg';
+
 import GoogleMapComponent from '../../components/GoogleMapsComponent/GoogleMapsComponent';
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
 
@@ -20,34 +22,8 @@ function Restaurants() {
 
     const [isRestaurantOpen, setIsRestaurantOpen] = useState(false);
 
-    let isOpen = false;
-
-    const toggleOpenButton = () => {
-        
-    }
-
     const handleOpenButton = () => {
         setIsRestaurantOpen(!isRestaurantOpen);
-
-        // const dayOfTheWeek = new Date().getDay();
-
-        // if (isRestaurantOpen) {
-        //     const fetchOpenRestaurants = async () => {
-        //         try {
-        //             const response = await axios.get('http://localhost:8080/api/restaurants/business-hours', { day: dayOfTheWeek });
-
-        //             const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
-
-        //             console.log(openRestaurants);
-        //         } catch (error) {
-                    
-        //         }
-        //     }
-
-        //     fetchOpenRestaurants();
-        // } else {
-        //     setFilteredRestaurants(restaurants);
-        // }
     }
 
     const toggleCategoryDropdown = () => {
@@ -61,20 +37,65 @@ function Restaurants() {
 
     const isCurrentTimeInRange = (startTime, endTime) => {
         const now = new Date();
-    const start = new Date();
-    let end = new Date();
+        const start = new Date();
+        let end = new Date();
 
-    const [startHours, startMinutes, startSeconds] = startTime.split(':').map(Number);
-    const [endHours, endMinutes, endSeconds] = endTime.split(':').map(Number);
+        const [startHours, startMinutes, startSeconds] = startTime.split(':').map(Number);
+        const [endHours, endMinutes, endSeconds] = endTime.split(':').map(Number);
 
-    start.setHours(startHours, startMinutes, startSeconds);
-    end.setHours(endHours, endMinutes, endSeconds);
+        start.setHours(startHours, startMinutes, startSeconds);
+        end.setHours(endHours, endMinutes, endSeconds);
 
-    if (end < start) {
-        end.setDate(end.getDate() + 1);
+        if (end < start) {
+            end.setDate(end.getDate() + 1);
+        }
+
+        return now >= start && now <= end;
     }
 
-    return now >= start && now <= end;
+    const clearFilters = () => {
+        setSelectedCategory('Select Category');
+        setIsRestaurantOpen(false);
+    }
+
+    const applyFilters = async () => {
+        if (isRestaurantOpen && selectedCategory !== 'Select Category') {
+            try {
+                const dayOfTheWeek = new Date().getDay();
+
+                const response = await axios.get('http://localhost:8080/api/restaurants/business-hours', {
+                    params: { day: dayOfTheWeek },
+                });
+
+                const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
+
+                const doubleFiltered = openRestaurants.filter((restaurant) => restaurant.cuisine === selectedCategory);
+
+                setFilteredRestaurants(doubleFiltered);
+            } catch (error) {
+                console.error(error);
+            }
+        } else if (isRestaurantOpen) {
+            try {
+                const dayOfTheWeek = new Date().getDay();
+
+                const response = await axios.get('http://localhost:8080/api/restaurants/business-hours', {
+                    params: { day: dayOfTheWeek },
+                });
+
+                const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
+
+                setFilteredRestaurants(openRestaurants)
+            } catch (error) {
+                console.error(error);
+            }
+        } else if (selectedCategory !== 'Select Category') {
+            const categoryFiltered = restaurants.filter((restaurant) => restaurant.cuisine === selectedCategory);
+
+            setFilteredRestaurants(categoryFiltered);
+        } else {
+            setFilteredRestaurants(restaurants);
+        }
     }
 
     useEffect(() => {
@@ -97,34 +118,8 @@ function Restaurants() {
     }, []);
 
     useEffect(() => {
-
-        if (restaurants) {
-            const filtered = restaurants.filter((restaurant) => restaurant.cuisine === selectedCategory);
-            setFilteredRestaurants(filtered);
-        }
-
-    }, [selectedCategory]);
-
-    useEffect(() => {
-
-        if (isRestaurantOpen) {
-            const dayOfTheWeek = new Date().getDay();
-
-            const fetchOpenRestaurants = async () => {
-                try {
-                    const response = await axios.get('http://localhost:8080/api/restaurants/business-hours', { params: {day : dayOfTheWeek}});
-                
-                    const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
-
-                    console.log(openRestaurants);
-                } catch (error) {
-                    console.error(error);
-                }
-            }
-
-            fetchOpenRestaurants();
-        }
-    }, [isRestaurantOpen]);
+        applyFilters();
+    }, [isRestaurantOpen, selectedCategory, restaurants]);
 
     if (!restaurants || !addresses) {
         return (
@@ -167,6 +162,7 @@ function Restaurants() {
                 >
                     Open Now
                 </div>
+                <CloseIcon className='restaurants__close_icon' onClick={clearFilters}/>
             </section >
             <section className='restaurants__card-container'>
                 {
