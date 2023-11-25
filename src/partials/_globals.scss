@@ -59,6 +59,9 @@
     }
 
     &--selected {
+        border: none;
+        border-radius: $border-radius-rounded;
+        padding: .3438rem 0.75rem;
         background-color: $peanut-peach;
     }
 }

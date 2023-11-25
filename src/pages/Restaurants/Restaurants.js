@@ -18,6 +18,38 @@ function Restaurants() {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('Select Category');
 
+    const [isRestaurantOpen, setIsRestaurantOpen] = useState(false);
+
+    let isOpen = false;
+
+    const toggleOpenButton = () => {
+        
+    }
+
+    const handleOpenButton = () => {
+        setIsRestaurantOpen(!isRestaurantOpen);
+
+        // const dayOfTheWeek = new Date().getDay();
+
+        // if (isRestaurantOpen) {
+        //     const fetchOpenRestaurants = async () => {
+        //         try {
+        //             const response = await axios.get('http://localhost:8080/api/restaurants/business-hours', { day: dayOfTheWeek });
+
+        //             const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
+
+        //             console.log(openRestaurants);
+        //         } catch (error) {
+                    
+        //         }
+        //     }
+
+        //     fetchOpenRestaurants();
+        // } else {
+        //     setFilteredRestaurants(restaurants);
+        // }
+    }
+
     const toggleCategoryDropdown = () => {
         setIsCategoryOpen(!isCategoryOpen);
     }
@@ -25,6 +57,24 @@ function Restaurants() {
     const handleCategoryDropDown = (option) => {
         setSelectedCategory(option);
         setIsCategoryOpen(false);
+    }
+
+    const isCurrentTimeInRange = (startTime, endTime) => {
+        const now = new Date();
+    const start = new Date();
+    let end = new Date();
+
+    const [startHours, startMinutes, startSeconds] = startTime.split(':').map(Number);
+    const [endHours, endMinutes, endSeconds] = endTime.split(':').map(Number);
+
+    start.setHours(startHours, startMinutes, startSeconds);
+    end.setHours(endHours, endMinutes, endSeconds);
+
+    if (end < start) {
+        end.setDate(end.getDate() + 1);
+    }
+
+    return now >= start && now <= end;
     }
 
     useEffect(() => {
@@ -48,13 +98,33 @@ function Restaurants() {
 
     useEffect(() => {
 
-        if(restaurants) {
+        if (restaurants) {
             const filtered = restaurants.filter((restaurant) => restaurant.cuisine === selectedCategory);
-            console.log(filteredRestaurants);
             setFilteredRestaurants(filtered);
         }
 
     }, [selectedCategory]);
+
+    useEffect(() => {
+
+        if (isRestaurantOpen) {
+            const dayOfTheWeek = new Date().getDay();
+
+            const fetchOpenRestaurants = async () => {
+                try {
+                    const response = await axios.get('http://localhost:8080/api/restaurants/business-hours', { params: {day : dayOfTheWeek}});
+                
+                    const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
+
+                    console.log(openRestaurants);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            fetchOpenRestaurants();
+        }
+    }, [isRestaurantOpen]);
 
     if (!restaurants || !addresses) {
         return (
@@ -91,7 +161,10 @@ function Restaurants() {
                         )
                     }
                 </div>
-                <div className='button'>
+                <div
+                    className={`${(isRestaurantOpen) ? 'button--selected' : 'button'}`}
+                    onClick={handleOpenButton}
+                >
                     Open Now
                 </div>
             </section >
