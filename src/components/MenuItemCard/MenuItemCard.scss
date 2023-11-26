@@ -1,0 +1,34 @@
+@use './../../partials/mixins' as *;
+@use './../../partials/variables' as *;
+
+.restaurant-menu {
+    
+    &__menu-item-card {
+        list-style-type: none;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        @include rounded-container($border-radius-rounded);
+        margin-bottom: 1rem;
+    }
+
+    &__details-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item-name {
+        margin-bottom: 0.5rem;
+    }
+
+    &__item-description {
+
+    }
+
+    &__price {
+
+    }
+}

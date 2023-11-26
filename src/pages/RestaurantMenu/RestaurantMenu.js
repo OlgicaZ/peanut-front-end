@@ -3,6 +3,7 @@ import './RestaurantMenu.scss'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import CategoryCard from '../../components/CategoryCard/CategoryCard';
 
 function RestaurantMenu() {
 
@@ -124,18 +125,7 @@ function RestaurantMenu() {
             </section>
             <section>
                 <h2>Your Custom Menu</h2>
-                {Object.entries(groupByCategory(menuItems)).map(([category, items]) => (
-                    <div key={category}>
-                        <h2>{category}</h2>
-                        <ul>
-                            {items.map(item => (
-                                <li key={item.id}>
-                                    <strong>{item.menu_item_name}</strong>: {item.description} - ${item.price}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
+                {Object.entries(groupByCategory(filteredItems)).map(([category, items]) => <CategoryCard category={category} items={items}/>)}
             </section>
 
         </main>
