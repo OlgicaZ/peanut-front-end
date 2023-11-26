@@ -123,9 +123,11 @@ function RestaurantMenu() {
                     </div>
                 </section>
             </section>
-            <section>
-                <h2>Your Custom Menu</h2>
-                {Object.entries(groupByCategory(filteredItems)).map(([category, items]) => <CategoryCard category={category} items={items}/>)}
+            <section className='restaurant-menu__custom-menu'>
+                <h2 className='restaurant-menu__custom-menu-heading'>Your Custom Menu</h2>
+                {
+                    Object.entries(groupByCategory(filteredItems)).map(([category, items]) => <CategoryCard category={category} items={items} />)
+                }
             </section>
 
         </main>

@@ -3,10 +3,12 @@ import './CategoryCard.scss';
 
 function CategoryCard({ category, items }) {
     return (
-        <div key={category}>
-            <h2>{category}</h2>
-            <ul>
-                {items.map(item => <MenuItemCard item={item} />)}
+        <div key={category} className='restaurant-menu__category-card'>
+            <h2 className='restaurant-menu__category-heading'>{category}</h2>
+            <ul className='restaurant-menu__category-list'>
+                {
+                    items.map(item => <MenuItemCard item={item} />)
+                }
             </ul>
         </div>
     );

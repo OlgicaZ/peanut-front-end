@@ -1,4 +1,5 @@
 @use './../../partials/variables' as *;
+@use './../../partials/mixins' as *;
 
 .restaurant-menu {
 
@@ -87,5 +88,17 @@
         width: 100%;
         display: flex;
         flex-direction: row;
+    }
+
+    &__custom-menu {
+        @include rounded-container($border-radius-rounded);
+        padding: 1rem;
+    }
+
+    &__custom-menu-heading {
+        display: flex;
+        justify-content: center;
+        font-size: 1.15rem;
+        font-weight: 700;
     }
 }
