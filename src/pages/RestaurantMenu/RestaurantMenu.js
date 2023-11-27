@@ -67,6 +67,44 @@ function RestaurantMenu() {
         setPescatarian(flag);
     }
 
+    const handleFilter = async () => {
+        const filterParams = {
+            dairy,
+            gluten,
+            shellfish,
+            treeNuts,
+            peanuts,
+            fish,
+            vegan,
+            vegetarian,
+            pescatarian,
+        };
+
+        if (!dairy && !gluten && ! shellfish && !treeNuts && !peanuts && !fish && !vegan && !vegetarian && !pescatarian) {
+            setFilteredItems(menuItems)
+            return;
+        }
+
+        const filteredParams = Object.keys(filterParams)
+            .filter((key) => filterParams[key])
+            .map((key) => `${key}=${filterParams[key]}`)
+            .join('&');
+
+        try {
+            const response = await axios.get(`http://localhost:8080/api/restaurants/${id}/allergens?${filteredParams}`);
+
+            let commonItems = response.data[0];
+
+            commonItems = response.data.slice(1).reduce((accumulator, currentArray) => {
+                return accumulator.filter(item => currentArray.some(currentItem => currentItem.menu_item_id === item.menu_item_id));
+            }, commonItems);
+            
+            setFilteredItems(commonItems);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const groupByCategory = (menuItems) => {
         return menuItems.reduce((groupedItems, item) => {
             if (!groupedItems[item.category]) {
@@ -77,7 +115,7 @@ function RestaurantMenu() {
         }, {})
     }
 
-    useState(() => {
+    useEffect(() => {
         const fetchMenuItems = async () => {
             const response = await axios.get(`http://localhost:8080/api/restaurants/${id}/menu-items`);
             setMenuItems(response.data);
@@ -122,11 +160,14 @@ function RestaurantMenu() {
                         <div className={`${(pescatarian) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handlePescatarianSelection}>Pescatarian</div>
                     </div>
                 </section>
+                <section className='restaurant-menu__filter-button-container'>
+                    <div className='button restaurant-menu__filter-button' onClick={handleFilter}>Filter</div>
+                </section>
             </section>
             <section className='restaurant-menu__custom-menu'>
                 <h2 className='restaurant-menu__custom-menu-heading'>Your Custom Menu</h2>
                 {
-                    Object.entries(groupByCategory(filteredItems)).map(([category, items]) => <CategoryCard category={category} items={items} />)
+                    Object.entries(groupByCategory(filteredItems)).map(([category, items]) => <CategoryCard key={category} category={category} items={items} />)
                 }
             </section>
 

@@ -102,4 +102,16 @@
         font-weight: 700;
         margin-bottom: 1rem;
     }
+
+    &__filter-button-container {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__filter-button {
+        padding: .3125rem .9375rem;
+        display: flex;
+        justify-content: center;
+    }
 }

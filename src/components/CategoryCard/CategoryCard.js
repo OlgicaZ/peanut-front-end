@@ -7,7 +7,7 @@ function CategoryCard({ category, items }) {
             <h2 className='restaurant-menu__category-heading'>{category}</h2>
             <ul className='restaurant-menu__category-list'>
                 {
-                    items.map(item => <MenuItemCard item={item} />)
+                    items.map(item => <MenuItemCard key={item.id} item={item} />)
                 }
             </ul>
         </div>
