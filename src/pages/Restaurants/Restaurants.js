@@ -133,43 +133,45 @@ function Restaurants() {
             <section className='restaurants__map-container'>
                 <GoogleMapComponent addresses={addresses} />
             </section>
-            <section className='restaurants__filters-container'>
-                <h3 className='section-subheader restaurants__subheader'>Filter:</h3>
-                <div className='restaurants__categories-container' onClick={toggleCategoryDropdown}>
-                    <div className={`${(selectedCategory == 'Select Category') ? 'restaurants__selected-option' : 'restaurants__selected-option selected'}`}>
-                        {selectedCategory}
-                        <DropDownIcon className={`${(selectedCategory == 'Select Category') ? 'restaurants__drop-down-icon' : 'restaurants__drop-down-icon selected'}`}     alt='A black down arrow on a white background' />
+            <div className='restaurants__main-container'>
+                <section className='restaurants__filters-container'>
+                    <h3 className='section-subheader restaurants__subheader'>Filter:</h3>
+                    <div className='restaurants__categories-container' onClick={toggleCategoryDropdown}>
+                        <div className={`${(selectedCategory == 'Select Category') ? 'restaurants__selected-option' : 'restaurants__selected-option selected'}`}>
+                            {selectedCategory}
+                            <DropDownIcon className={`${(selectedCategory == 'Select Category') ? 'restaurants__drop-down-icon' : 'restaurants__drop-down-icon selected'}`} alt='A black down arrow on a white background' />
+                        </div>
+                        {
+                            isCategoryOpen && (
+                                <ul className='restaurants__categories-list'>
+                                    {
+                                        categoryOptions.map((option) => {
+                                            return <li
+                                                key={option}
+                                                className='restaurants__category-option'
+                                                onClick={() => handleCategoryDropDown(option)}>
+                                                {option}
+                                            </li>
+                                        })
+                                    }
+                                </ul>
+                            )
+                        }
                     </div>
+                    <div
+                        className={`${(isRestaurantOpen) ? 'button selected' : 'button'}`}
+                        onClick={handleOpenButton}
+                    >
+                        Open Now
+                    </div>
+                    <CloseIcon className='restaurants__close_icon' onClick={clearFilters} />
+                </section >
+                <section className='restaurants__card-container'>
                     {
-                        isCategoryOpen && (
-                            <ul className='restaurants__categories-list'>
-                                {
-                                    categoryOptions.map((option) => {
-                                        return <li
-                                            key={option}
-                                            className='restaurants__category-option'
-                                            onClick={() => handleCategoryDropDown(option)}>
-                                            {option}
-                                        </li>
-                                    })
-                                }
-                            </ul>
-                        )
+                        filteredRestaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
                     }
-                </div>
-                <div
-                    className={`${(isRestaurantOpen) ? 'button selected' : 'button'}`}
-                    onClick={handleOpenButton}
-                >
-                    Open Now
-                </div>
-                <CloseIcon className='restaurants__close_icon' onClick={clearFilters}/>
-            </section >
-            <section className='restaurants__card-container'>
-                {
-                    filteredRestaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
-                }
-            </section>
+                </section>
+            </div>
         </main >
     );
 }
