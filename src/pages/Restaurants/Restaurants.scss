@@ -3,14 +3,27 @@
 .restaurants {
     display: flex;
     flex-direction: column;
+    height: 100%;
+
+    &__map-container {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+    }
 
     &__filters-container {
         display: flex;
         flex-direction: row;
         align-items: baseline;
-        padding: 3rem 2rem 5rem;
+        padding: 3rem 2rem 6rem;
         background-color: $peanut-byzantium;
         position: relative;
+        border-top-right-radius: $border-radius-extra-rounded;
+        border-top-left-radius: $border-radius-extra-rounded;
+        margin-top: 50vh;
+        z-index: 2;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     &__subheader {
@@ -67,10 +80,11 @@
         display: flex;
         flex-direction: column;
         padding: 2rem 2rem;
-        width: 100%;
-        // border: 1px solid green;
         border-radius: $border-radius-extra-rounded;
-        margin-top: -2.5rem; // Move the card-container up by 5 pixels
-        z-index: 2; // Ensure that card-container is below other elements
+        margin-top: -2.9rem;
+        z-index: 3; 
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 3rem;
     }
 }

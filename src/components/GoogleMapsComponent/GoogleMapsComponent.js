@@ -1,16 +1,16 @@
 
 import './GoogleMapsComponent.scss';
 
-import { GoogleMap, LoadScript, Marker, InfoWindow, useGoogleMap } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 
 const mapContainerStyle = {
     width: '100%',
-    height: '50vh',
+    height: '100%',
 };
 
 const center = {
-    lat: 25.80012,
+    lat: 25.79950,
     lng: -80.202813,
 };
 
