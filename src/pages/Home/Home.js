@@ -7,11 +7,11 @@ function Home() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        setTimeout(() => {
-            navigate('/restaurants');
-        }, 3000);
-    }, [])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         navigate('/restaurants');
+    //     }, 3000);
+    // }, [])
 
     return (
         <main className='home'>

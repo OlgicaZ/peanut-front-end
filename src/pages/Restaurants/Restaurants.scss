@@ -3,20 +3,26 @@
 .restaurants {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    background-color: $peanut-beige;
 
     &__filters-container {
         display: flex;
         flex-direction: row;
         align-items: baseline;
-        padding: 1rem 0;
+        padding: 2rem 2rem 3rem;
+        background-color: $peanut-byzantium;
+    }
+
+    &__subheader {
+        color: white;
+        font-weight: 600;
     }
 
     &__categories-container {
+        background-color: white;
         margin: 0 1rem;
         display: flex;
         flex-direction: column;
-        border: .125rem solid $peanut-peach;
         border-radius: $border-radius-rounded;
     }
 
@@ -25,7 +31,13 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 0.1rem 1rem;
+        padding: .3125rem 1.5rem;
+        font-weight: 600;
+
+        &.selected {
+            background-color: $peanut-peach;
+            border-radius: $border-radius-rounded;
+        }
     }
 
     &__drop-down-icon {
@@ -34,23 +46,27 @@
 
     &__close_icon {
         cursor: grab;
-        fill: $peanut-black;
+        fill: $peanut-white;
         align-self: flex-start;
         margin-left: 1rem;
-        margin-top: 0.2rem;
+        margin-top: 0.3rem;
     }
 
     &__categories-list {
         list-style-type: none;
+        font-weight: 600;
     }
 
     &__category-option {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1.5rem;
     }
 
     &__card-container {
         display: flex;
         flex-direction: column;
+        padding: 1rem 2rem;
+        width: 100%;
+        border-top-left-radius: $border-radius-rounded;
+        border-bottom-right-radius: $border-radius-rounded;
     }
 }
-

@@ -67,6 +67,8 @@ function Restaurants() {
                     params: { day: dayOfTheWeek },
                 });
 
+                console.log(response.data);
+
                 const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
 
                 const doubleFiltered = openRestaurants.filter((restaurant) => restaurant.cuisine === selectedCategory);
@@ -84,7 +86,7 @@ function Restaurants() {
                 });
 
                 const openRestaurants = response.data.filter((restaurant) => isCurrentTimeInRange(restaurant.open_time, restaurant.close_time));
-
+                console.log(openRestaurants);
                 setFilteredRestaurants(openRestaurants)
             } catch (error) {
                 console.error(error);
@@ -99,7 +101,6 @@ function Restaurants() {
     }
 
     useEffect(() => {
-
         const fetchData = async () => {
             try {
                 const restaurantsResponse = await axios.get('http://localhost:8080/api/restaurants');
@@ -133,9 +134,9 @@ function Restaurants() {
                 <GoogleMapComponent addresses={addresses} />
             </section>
             <section className='restaurants__filters-container'>
-                <h3 className='section-subheader'>Filter:</h3>
+                <h3 className='section-subheader restaurants__subheader'>Filter:</h3>
                 <div className='restaurants__categories-container' onClick={toggleCategoryDropdown}>
-                    <div className='restaurants__selected-option'>
+                    <div className={`${(selectedCategory == 'Select Category') ? 'restaurants__selected-option' : 'restaurants__selected-option selected'}`}>
                         {selectedCategory}
                         <DropDownIcon className='restaurants__drop-down-icon' alt='A black down arrow on a white background' />
                     </div>
@@ -157,7 +158,7 @@ function Restaurants() {
                     }
                 </div>
                 <div
-                    className={`${(isRestaurantOpen) ? 'button--selected' : 'button'}`}
+                    className={`${(isRestaurantOpen) ? 'button selected' : 'button'}`}
                     onClick={handleOpenButton}
                 >
                     Open Now

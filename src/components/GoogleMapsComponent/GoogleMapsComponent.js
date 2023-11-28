@@ -1,7 +1,7 @@
 
 import './GoogleMapsComponent.scss';
 
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow, useGoogleMap } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 
 const mapContainerStyle = {
@@ -16,6 +16,7 @@ const center = {
 
 const mapOptions = {
     // Customize map options here
+    mapTypeId: 'roadmap',
     disableDefaultUI: true, // Hide default UI components (e.g., zoom control)
     styles: [
         {
@@ -24,6 +25,7 @@ const mapOptions = {
             stylers: [{ visibility: 'off' }], // Hide points of interest labels
         },
         // Add more styles as needed
+
     ],
 };
 
@@ -78,11 +80,12 @@ function GoogleMapComponent({ addresses }) {
 
     return (
         <LoadScript
-            googleMapsApiKey='AIzaSyADAbGy6K9_E5njq961RzpbsGk1Bb4oHiA'>
-            {/* <LoadScript googleMapsApiKey={apiKey}>   */}
-            <GoogleMap 
-                mapContainerStyle={mapContainerStyle} 
-                center={center} 
+            googleMapsApiKey='AIzaSyADAbGy6K9_E5njq961RzpbsGk1Bb4oHiA'
+            /* googleMapsApiKey={apiKey} */
+        >
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                center={center}
                 zoom={17}
                 options={mapOptions}
             >

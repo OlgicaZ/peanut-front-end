@@ -3,67 +3,64 @@
 @use './mixins' as *;
 
 * {
-    font-family: 'Roboto';
-    font-size: .875rem;
-    font-weight: 600;
+    font-family: 'Raleway';
     color: $peanut-black;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-size: .9375rem;
 }
 
 .header {
     font-family: 'Playfair Display';
-    font-size: 2rem;
+    font-size: 3rem;
     color: $peanut-byzantium;
 
     @include mobile-large {
-        font-size: 2.3rem;
+        font-size: 3rem;
     }
 
     &--slogan {
         font-family: 'Playfair Display';
-        font-size: 2rem;
+        font-size: 3rem;
         color: $peanut-brick;
 
         @include mobile-large {
-            font-size: 2.3rem;
+            font-size: 3rem;
         }
     }
 }
 
 .section-header {
-    font-family: 'Playfair Display';
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.section-subheader {
-    font-family: 'Roboto';
     font-size: 1rem;
     font-weight: 600;
 }
 
+.section-subheader {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
 .section-body {
-    font-size: .8125rem;
-    font-weight: 500;
+    font-size: .875rem;
+    font-weight: 400;
 }
 
 .button {
     width: fit-content;
     height: fit-content;
-    border: .125rem solid $peanut-peach;
+    background-color: white;
     border-radius: $border-radius-rounded;
-    padding: .3438rem 0.75rem;
+    padding: .625rem 0.75rem;
+    font-size: .9375rem;
+    font-weight: 600;
 
     &:hover {
         background-color: $peanut-sand;
     }
 
-    &--selected {
+    &.selected {
         border: none;
-        border-radius: $border-radius-rounded;
-        padding: .3438rem 0.75rem;
         background-color: $peanut-peach;
     }
 }
