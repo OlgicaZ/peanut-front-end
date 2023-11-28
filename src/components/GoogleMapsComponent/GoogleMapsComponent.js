@@ -1,7 +1,7 @@
 
 import './GoogleMapsComponent.scss';
 
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow, useGoogleMap } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 
 const mapContainerStyle = {
@@ -10,7 +10,7 @@ const mapContainerStyle = {
 };
 
 const center = {
-    lat: 25.79950,
+    lat: 25.79900,
     lng: -80.202813,
 };
 
@@ -24,10 +24,30 @@ const mapOptions = {
             elementType: 'labels',
             stylers: [{ visibility: 'off' }], // Hide points of interest labels
         },
-        // Add more styles as needed
-
+        {
+            featureType: 'transit',
+            elementType: 'labels.icon',
+            stylers: [{ visibility: 'off' }], // Hide transit labels
+        },
+        {
+            featureType: 'road',
+            elementType: 'labels.icon',
+            stylers: [{ visibility: 'off' }], // Hide road labels
+        },
     ],
 };
+
+// const markerOptions = {
+//     icon: {
+//         path: window.google ? window.google.maps.SymbolPath.CIRCLE : undefined,
+//         fillColor: 'rgb(247, 195, 67)', // Set the fill color of the marker
+//         fillOpacity: 1,
+//         strokeColor: 'rgb(57, 50, 67)',
+//         strokeOpacity: 1,
+//         strokeWeight: 2,
+//         scale: 9,
+//     },
+// };
 
 function GoogleMapComponent({ addresses }) {
 
@@ -78,10 +98,11 @@ function GoogleMapComponent({ addresses }) {
         fetchLocations();
     }, []);
 
+
     return (
         <LoadScript
             googleMapsApiKey='AIzaSyADAbGy6K9_E5njq961RzpbsGk1Bb4oHiA'
-            /* googleMapsApiKey={apiKey} */
+        /* googleMapsApiKey={apiKey} */
         >
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}

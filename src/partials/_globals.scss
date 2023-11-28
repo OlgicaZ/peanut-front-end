@@ -49,7 +49,9 @@
 .button {
     width: fit-content;
     height: fit-content;
-    background-color: white;
+    // background-color: white;
+    background-color: $peanut-violet;
+    color: $peanut-peach;
     border-radius: $border-radius-rounded;
     padding: .625rem 0.75rem;
     font-size: .9375rem;
@@ -62,5 +64,6 @@
     &.selected {
         border: none;
         background-color: $peanut-peach;
+        color: $peanut-black
     }
 }

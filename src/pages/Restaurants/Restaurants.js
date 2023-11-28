@@ -138,7 +138,7 @@ function Restaurants() {
                 <div className='restaurants__categories-container' onClick={toggleCategoryDropdown}>
                     <div className={`${(selectedCategory == 'Select Category') ? 'restaurants__selected-option' : 'restaurants__selected-option selected'}`}>
                         {selectedCategory}
-                        <DropDownIcon className='restaurants__drop-down-icon' alt='A black down arrow on a white background' />
+                        <DropDownIcon className={`${(selectedCategory == 'Select Category') ? 'restaurants__drop-down-icon' : 'restaurants__drop-down-icon selected'}`}     alt='A black down arrow on a white background' />
                     </div>
                     {
                         isCategoryOpen && (

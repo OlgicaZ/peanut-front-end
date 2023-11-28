@@ -20,19 +20,19 @@
         position: relative;
         border-top-right-radius: $border-radius-extra-rounded;
         border-top-left-radius: $border-radius-extra-rounded;
-        margin-top: 50vh;
+        margin-top: 43vh;
         z-index: 2;
         margin-left: 1rem;
         margin-right: 1rem;
     }
 
     &__subheader {
-        color: white;
-        font-weight: 600;
+        color: $peanut-beige;
+        font-weight: 700;
     }
 
     &__categories-container {
-        background-color: white;
+        background-color: $peanut-violet;
         margin: 0 1rem;
         display: flex;
         flex-direction: column;
@@ -40,6 +40,7 @@
     }
 
     &__selected-option {
+        color: $peanut-peach;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -49,17 +50,22 @@
 
         &.selected {
             background-color: $peanut-peach;
+            color: $peanut-black;
             border-radius: $border-radius-rounded;
         }
     }
 
     &__drop-down-icon {
-        fill: $peanut-black;
+        fill: $peanut-peach;
+
+        &.selected {
+            fill: $peanut-black;
+        }
     }
 
     &__close_icon {
         cursor: grab;
-        fill: $peanut-white;
+        fill: $peanut-peach;
         align-self: flex-start;
         margin-left: 1rem;
         margin-top: 0.3rem;
@@ -72,6 +78,7 @@
 
     &__category-option {
         padding: 0.5rem 1.5rem;
+        color: $peanut-peach;
     }
 
     &__card-container {
