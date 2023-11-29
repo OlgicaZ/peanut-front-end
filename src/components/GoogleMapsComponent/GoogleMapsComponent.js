@@ -49,6 +49,7 @@ const mapOptions = {
 //     },
 // };
 
+
 function GoogleMapComponent({ addresses }) {
 
     const apiKey = process.env.REACT_APP_GOOGLE_API;

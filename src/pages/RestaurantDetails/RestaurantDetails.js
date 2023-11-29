@@ -6,6 +6,9 @@ import axios from 'axios';
 
 import { mapDay, mapTime } from '../../utils/utils';
 
+import { ReactComponent as BackIcon } from './../../assets/icons/arrow_back_black_24dp.svg'; 
+
+
 function RestaurantDetails() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -16,6 +19,11 @@ function RestaurantDetails() {
 
     const handleSelection = () => {
         navigate(`/restaurant-menu/${id}`)
+    }
+
+    const handleBackNavigation = () => {
+        navigate('/restaurants');
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -42,6 +50,9 @@ function RestaurantDetails() {
     return (
         <main className='restaurant-details'>
             <div className='restaurant-details__hero'>
+                <div className='restaurant-details__back-button-container'>
+                    <BackIcon className='restaurant-details__back-icon' onClick={handleBackNavigation} />
+                </div>
                 <img className='restaurant-details__image' src={currentRestaurant.image_url} alt={currentRestaurant.description} />
             </div>
             <div className='restaurant-details__info-container'>
@@ -50,7 +61,7 @@ function RestaurantDetails() {
                         <h1 className='restaurant-details__name section-header'>{currentRestaurant.restaurant_name}</h1>
                         <h2 className='restaurant-details__cuisine section-subheader'>{currentRestaurant.cuisine} Restaurant</h2>
                     </div>
-                    <div className='button' onClick={handleSelection}>View Menu</div>
+                    <div className='button--secondary' onClick={handleSelection}>View Menu</div>
                 </section>
                 <section className='restaurant-details__about-container'>
                     <h2 className='section-subheader'>About</h2>
