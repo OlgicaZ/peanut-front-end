@@ -9,6 +9,10 @@
     margin: 0;
     padding: 0;
     font-size: .9375rem;
+
+    @include tablet {
+        font-size: 1rem;
+    }
 }
 
 .header {
@@ -34,16 +38,29 @@
 .section-header {
     font-size: 1rem;
     font-weight: 600;
+
+    @include tablet {
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
 }
 
 .section-subheader {
     font-size: 1rem;
     font-weight: 700;
+
+    @include tablet {
+        font-size: 1.125rem;
+    }
 }
 
 .section-body {
     font-size: .875rem;
     font-weight: 400;
+
+    @include tablet {
+        font-size: 1rem;
+    }
 }
 
 .button {

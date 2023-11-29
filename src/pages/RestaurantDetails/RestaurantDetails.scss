@@ -1,6 +1,11 @@
 @use './../../partials/variables' as *;
 @use './../../partials/mixins' as *;
 
+html {
+    background-color: $peanut-beige;
+    height: 100vh;
+}
+
 .restaurant-details {
 
     width: 100%;
@@ -9,9 +14,16 @@
     background-color: $peanut-beige;
     height: 100vh;
 
+    @include desktop {
+        width: 70%;
+        margin: 0 auto;
+    }
+
     &__hero {
         height: 60vh;
         padding-bottom: 2.5rem;
+        position: relative;
+        box-shadow: 0 0 1.5rem rgba(57, 50, 67, 0.5);
     }
 
     &__back-button-container {
@@ -41,6 +53,7 @@
         display: flex;
         flex-direction: column;
         background-color: $peanut-beige;
+        box-shadow: 0 0 1.5rem rgba(57, 50, 67, 0.5);
     }
 
     &__header-container {
@@ -55,6 +68,11 @@
         align-items: center;
         margin-top: -5.5rem;
         margin-bottom: 1.5rem;
+
+        @include tablet {
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
     }
 
     &__header {
@@ -62,7 +80,6 @@
     }
 
     &__name {
-        font-size: 1.5rem;
         margin-bottom: 0.5rem;
     }
 
@@ -77,6 +94,11 @@
         background-color: $peanut-white;
         margin-bottom: 2rem;
         @include rounded-container(2rem);
+
+        @include tablet {
+            width: 85%;
+            padding: 2rem;
+        }
     }
 
     &__about-content {
@@ -90,6 +112,11 @@
         background-color: $peanut-white;
         margin-bottom: 2rem;
         @include rounded-container(2rem);
+
+        @include tablet {
+            width: 85%;
+            padding: 2rem;
+        }
     }
 
     &__list {
