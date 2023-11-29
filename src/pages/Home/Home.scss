@@ -1,7 +1,14 @@
 @use './../../partials/mixins' as *;
+@use './../../partials/variables' as *;
+
+
+main {
+    background-color: $peanut-white;
+}
+
 
 .home {
-
+    background-color: $peanut-white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

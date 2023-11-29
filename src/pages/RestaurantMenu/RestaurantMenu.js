@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
-import { ReactComponent as BackIcon } from './../../assets/icons/arrow_back_black_24dp.svg'; 
+import { ReactComponent as BackIcon } from './../../assets/icons/arrow_back_black_24dp.svg';
 
 
 function RestaurantMenu() {
@@ -15,6 +15,8 @@ function RestaurantMenu() {
 
     const [menuItems, setMenuItems] = useState(null);
     const [filteredItems, setFilteredItems] = useState(null);
+    const [adjustedItems, setAdjustedItems] = useState(null);
+
 
     const [dairy, setDairy] = useState(false);
     const [gluten, setGluten] = useState(false);
@@ -97,13 +99,11 @@ function RestaurantMenu() {
         try {
             const response = await axios.get(`http://localhost:8080/api/restaurants/${id}/allergens?${filteredParams}`);
 
-            let commonItems = response.data[0];
+            let menuItems = response.data;
 
-            commonItems = response.data.slice(1).reduce((accumulator, currentArray) => {
-                return accumulator.filter(item => currentArray.some(currentItem => currentItem.menu_item_id === item.menu_item_id));
-            }, commonItems);
+            console.table(response.data);
 
-            setFilteredItems(commonItems);
+            setFilteredItems(menuItems);
         } catch (error) {
             console.error(error);
         }
@@ -140,7 +140,7 @@ function RestaurantMenu() {
     return (
         <main className='restaurant-menu'>
             <section className='restaurant-menu__header-container'>
-            <div className='restaurant-menu__back-button-container'>
+                <div className='restaurant-menu__back-button-container'>
                     <BackIcon className='restaurant-menu__back-icon' onClick={handleBackNavigation} />
                 </div>
                 <h1 className='section-header restaurant-menu__header'>{menuItems[0].restaurant_name}</h1>
@@ -180,7 +180,10 @@ function RestaurantMenu() {
             <section className='restaurant-menu__custom-menu'>
                 <h2 className='restaurant-menu__custom-menu-heading'>Your Custom Menu</h2>
                 {
-                    Object.entries(groupByCategory(filteredItems)).map(([category, items]) => <CategoryCard key={category} category={category} items={items} />)
+                    (filteredItems.length > 0) ? (
+                        Object.entries(groupByCategory(filteredItems)).map(([category, items]) => <CategoryCard key={category} category={category} items={items} />)
+                    ) : (<div className='restaurant-menu__error-message'>The restaurant cannot accomodate the provided allergies and/or dietary restrictions</div>)
+
                 }
             </section>
 

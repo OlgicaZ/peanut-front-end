@@ -1,7 +1,7 @@
 @use './../../partials/variables' as *;
 @use './../../partials/mixins' as *;
 
-main {
+body, main {
     background-color: $peanut-byzantium;
 }
 
@@ -130,11 +130,13 @@ main {
 
     &__custom-menu {
         background-color: $peanut-beige;
-        @include rounded-container($border-radius-rounded);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        //@include rounded-container($border-radius-rounded);
         padding: 2rem;
         position: relative;
-        border-top-right-radius: $border-radius-extra-rounded;
-        border-top-left-radius: $border-radius-extra-rounded;
+        border-radius: $border-radius-extra-rounded;
         margin-top: -4.375rem;
         z-index: 2;
 
@@ -170,5 +172,11 @@ main {
         padding: .3125rem 1.5625rem;
         display: flex;
         justify-content: center;
+    }
+
+    &__error-message {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
     }
 }

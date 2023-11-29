@@ -39,19 +39,24 @@ function Restaurants() {
         const now = new Date();
         const start = new Date();
         let end = new Date();
-
+    
         const [startHours, startMinutes, startSeconds] = startTime.split(':').map(Number);
         const [endHours, endMinutes, endSeconds] = endTime.split(':').map(Number);
-
+    
         start.setHours(startHours, startMinutes, startSeconds);
         end.setHours(endHours, endMinutes, endSeconds);
-
+    
+        // If end time is before start time, assume it's on the next day
         if (end < start) {
-            end.setDate(end.getDate() + 1);
+            return now >= start || now <= end;
         }
-
+    
+        // Check if current time is within the range
         return now >= start && now <= end;
-    }
+    };
+    
+    
+    
 
     const clearFilters = () => {
         setSelectedCategory('Select Category');
@@ -168,7 +173,11 @@ function Restaurants() {
                 </section >
                 <section className='restaurants__card-container'>
                     {
+                        (filteredRestaurants.length > 0) ? (
                         filteredRestaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
+                        ) : (
+                            <div className='restaurants__error-message'>There are no restaurants that match the criteria</div>
+                        )
                     }
                 </section>
             </div>

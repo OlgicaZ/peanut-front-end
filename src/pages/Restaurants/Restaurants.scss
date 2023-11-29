@@ -139,4 +139,9 @@
             margin-left: -5vw;
         }
     }
+
+    &__error-message {
+        display: flex;
+        justify-content: center;
+    }
 }
