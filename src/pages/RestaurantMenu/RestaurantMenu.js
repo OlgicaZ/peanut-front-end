@@ -15,7 +15,7 @@ function RestaurantMenu() {
 
     const [menuItems, setMenuItems] = useState(null);
     const [filteredItems, setFilteredItems] = useState(null);
-    const [adjustedItems, setAdjustedItems] = useState(null);
+    // const [adjustedItems, setAdjustedItems] = useState(null);
 
 
     const [dairy, setDairy] = useState(false);

@@ -1,4 +1,3 @@
-
 import './GoogleMapsComponent.scss';
 
 import { GoogleMap, LoadScript, Marker, InfoWindow, useGoogleMap } from '@react-google-maps/api';

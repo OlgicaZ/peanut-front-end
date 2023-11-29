@@ -15,7 +15,7 @@ function RestaurantDetails() {
 
     const [currentRestaurant, setCurrentRestaurant] = useState(null);
     const [businessHours, setBusinessHours] = useState(null);
-    const [isSelected, setIsSelected] = useState(false);
+    // const [isSelected, setIsSelected] = useState(false);
 
     const handleSelection = () => {
         navigate(`/restaurant-menu/${id}`)
