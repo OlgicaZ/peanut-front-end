@@ -1,7 +1,7 @@
 @use './../../partials/variables' as *;
 @use './../../partials/mixins' as *;
 
-html {
+body {
     background-color: $peanut-beige;
     height: 100vh;
 }

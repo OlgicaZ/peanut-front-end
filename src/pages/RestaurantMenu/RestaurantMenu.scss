@@ -1,12 +1,17 @@
 @use './../../partials/variables' as *;
 @use './../../partials/mixins' as *;
 
+main {
+    background-color: $peanut-byzantium;
+}
+
 .restaurant-menu {
 
     display: flex;
     flex-direction: column;
 
     &__header-container {
+        width: 100%;
         padding: 3rem 2rem 6rem;
         background-color: $peanut-byzantium;
         display: flex;
@@ -41,8 +46,18 @@
     &__filters-container {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        // justify-content: center;
         margin-bottom: 2rem;
+
+        @include tablet {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        @include desktop {
+            width: 60%;
+            margin: 0 auto;
+        }
     }
 
     &__allergens-container {
@@ -56,6 +71,14 @@
         width: 20%;
         align-self: center;
         margin-right: 1rem;
+
+        @include desktop {
+            margin-right: 2rem;
+        }
+
+        @include desktop {
+            margin-right: 3rem;
+        }
     }
 
     &__filter-name>h2 {
@@ -114,6 +137,18 @@
         border-top-left-radius: $border-radius-extra-rounded;
         margin-top: -4.375rem;
         z-index: 2;
+
+        @include tablet {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: -4.375rem;
+        }
+
+        @include desktop {
+            width: 60%;
+            margin: 0 auto;
+            margin-top: -4.375rem;
+        }
     }
 
     &__custom-menu-heading {
