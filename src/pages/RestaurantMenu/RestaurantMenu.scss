@@ -5,12 +5,37 @@
 
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+
+    &__header-container {
+        padding: 3rem 2rem 6rem;
+        background-color: $peanut-byzantium;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__back-button-container {
+        width: 5vh;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        background-color: $peanut-white;  
+        border-radius: 3.125rem;
+        padding: 0.3rem;
+    }
+
+    &__back-icon {
+        fill: $peanut-black;
+    }
 
     &__header {
-        margin: 0 auto;
-        margin-bottom: 2rem;
-        font-size: 1.5rem;
+        align-self: center;
+        margin-bottom: 3.5rem;
+        font-size: 2rem;
+        color: $peanut-beige;
     }
 
     &__filters-container {
@@ -60,27 +85,17 @@
         max-width: 6.875rem;
         min-width: fit-content;
         max-height: 1.5625rem;
-        border: .125rem solid $peanut-black;
+        background-color: $peanut-violet;
+        color: $peanut-beige;
         border-radius: $border-radius-rounded;
         padding: .1875rem .3125rem;
         display: flex;
         justify-content: center;
+        font-weight: 600;
 
-        &:hover {
-            background-color: $peanut-sand;
-        }
-
-        &--selected {
-            width: 31%;
-            max-width: 6.875rem;
-            min-width: fit-content;
-            max-height: 1.5625rem;
-            border: none;
-            border-radius: $border-radius-rounded;
-            padding: .1875rem .3125rem;
-            background-color: $peanut-peach;
-            display: flex;
-            justify-content: center;
+        &.selected {
+            background-color: $peanut-beige;
+            color: $peanut-black;
         }
     }
 
@@ -91,26 +106,33 @@
     }
 
     &__custom-menu {
+        background-color: $peanut-beige;
         @include rounded-container($border-radius-rounded);
-        padding: 1rem;
+        padding: 2rem;
+        position: relative;
+        border-top-right-radius: $border-radius-extra-rounded;
+        border-top-left-radius: $border-radius-extra-rounded;
+        margin-top: -4.375rem;
+        z-index: 2;
     }
 
     &__custom-menu-heading {
         display: flex;
         justify-content: center;
-        font-size: 1.15rem;
+        font-size: 1.5rem;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
     }
 
     &__filter-button-container {
-        margin-top: 1rem;
+        margin-top: 2rem;
         display: flex;
         justify-content: flex-end;
     }
 
     &__filter-button {
-        padding: .3125rem .9375rem;
+        padding: .3125rem 1.5625rem;
         display: flex;
         justify-content: center;
     }

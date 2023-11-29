@@ -2,12 +2,16 @@ import './RestaurantMenu.scss'
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
+import { ReactComponent as BackIcon } from './../../assets/icons/arrow_back_black_24dp.svg'; 
+
 
 function RestaurantMenu() {
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [menuItems, setMenuItems] = useState(null);
     const [filteredItems, setFilteredItems] = useState(null);
@@ -80,7 +84,7 @@ function RestaurantMenu() {
             pescatarian,
         };
 
-        if (!dairy && !gluten && ! shellfish && !treeNuts && !peanuts && !fish && !vegan && !vegetarian && !pescatarian) {
+        if (!dairy && !gluten && !shellfish && !treeNuts && !peanuts && !fish && !vegan && !vegetarian && !pescatarian) {
             setFilteredItems(menuItems)
             return;
         }
@@ -98,7 +102,7 @@ function RestaurantMenu() {
             commonItems = response.data.slice(1).reduce((accumulator, currentArray) => {
                 return accumulator.filter(item => currentArray.some(currentItem => currentItem.menu_item_id === item.menu_item_id));
             }, commonItems);
-            
+
             setFilteredItems(commonItems);
         } catch (error) {
             console.error(error);
@@ -113,6 +117,10 @@ function RestaurantMenu() {
             groupedItems[item.category].push(item);
             return groupedItems;
         }, {})
+    }
+
+    const handleBackNavigation = () => {
+        navigate(-1);
     }
 
     useEffect(() => {
@@ -131,37 +139,42 @@ function RestaurantMenu() {
 
     return (
         <main className='restaurant-menu'>
-            <h1 className='section-header restaurant-menu__header'>{menuItems[0].restaurant_name}</h1>
-            <section className='restaurant-menu__filters-container'>
-                <section className='restaurant-menu__allergens-container'>
-                    <div className='restaurant-menu__filter-name'>
-                        <h2 className='section-subheader'>Allergens</h2>
-                    </div>
-                    <div className='restaurant-menu__subcontainer'>
-                        <div className='restaurant-menu__allergens'>
-                            <div className={`${(dairy) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handleDairySelection}>Dairy</div>
-                            <div className={`${(gluten) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handleGlutenSelection}>Gluten</div>
-                            <div className={`${(shellfish) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handleShellfishSelection}>Shellfish</div>
+            <section className='restaurant-menu__header-container'>
+            <div className='restaurant-menu__back-button-container'>
+                    <BackIcon className='restaurant-menu__back-icon' onClick={handleBackNavigation} />
+                </div>
+                <h1 className='section-header restaurant-menu__header'>{menuItems[0].restaurant_name}</h1>
+                <section className='restaurant-menu__filters-container'>
+                    <section className='restaurant-menu__allergens-container'>
+                        <div className='restaurant-menu__filter-name'>
+                            <h2 className='section-subheader white'>Allergens</h2>
                         </div>
-                        <div className='restaurant-menu__allergens'>
-                            <div className={`${(treeNuts) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handleTreeNutsSelection}>Tree Nuts</div>
-                            <div className={`${(peanuts) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handlePeanutsSelection}>Peanuts</div>
-                            <div className={`${(fish) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handleFishSelection}>Fish</div>
+                        <div className='restaurant-menu__subcontainer'>
+                            <div className='restaurant-menu__allergens'>
+                                <div className={`${(dairy) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handleDairySelection}>Dairy</div>
+                                <div className={`${(gluten) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handleGlutenSelection}>Gluten</div>
+                                <div className={`${(shellfish) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handleShellfishSelection}>Shellfish</div>
+                            </div>
+                            <div className='restaurant-menu__allergens'>
+                                <div className={`${(treeNuts) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handleTreeNutsSelection}>Tree Nuts</div>
+                                <div className={`${(peanuts) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handlePeanutsSelection}>Peanuts</div>
+                                <div className={`${(fish) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handleFishSelection}>Fish</div>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                <section className='restaurant-menu__restrictions-container'>
-                    <div className='restaurant-menu__filter-name'>
-                        <h2 className='section-subheader'>Dietary Restrictions</h2>
-                    </div>
-                    <div className='restaurant-menu__allergens subcontainer'>
-                        <div className={`${(vegan) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handleVeganSelection}>Vegan</div>
-                        <div className={`${(vegetarian) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handleVegetarianSelection}>Vegetarian</div>
-                        <div className={`${(pescatarian) ? 'restaurant-menu__allergen_button--selected' : 'restaurant-menu__allergen_button'}`} onClick={handlePescatarianSelection}>Pescatarian</div>
-                    </div>
-                </section>
-                <section className='restaurant-menu__filter-button-container'>
-                    <div className='button restaurant-menu__filter-button' onClick={handleFilter}>Filter</div>
+                    </section>
+                    <section className='restaurant-menu__restrictions-container'>
+                        <div className='restaurant-menu__filter-name'>
+                            <h2 className='section-subheader white'>Dietary Restrictions</h2>
+                        </div>
+                        <div className='restaurant-menu__allergens subcontainer'>
+                            <div className={`${(vegan) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handleVeganSelection}>Vegan</div>
+                            <div className={`${(vegetarian) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handleVegetarianSelection}>Vegetarian</div>
+                            <div className={`${(pescatarian) ? 'restaurant-menu__allergen_button selected' : 'restaurant-menu__allergen_button'}`} onClick={handlePescatarianSelection}>Pescatarian</div>
+                        </div>
+                    </section>
+                    <section className='restaurant-menu__filter-button-container'>
+                        <div className='restaurant-menu__filter-button button--secondary' onClick={handleFilter}>Apply</div>
+                    </section>
                 </section>
             </section>
             <section className='restaurant-menu__custom-menu'>

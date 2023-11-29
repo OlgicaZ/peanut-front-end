@@ -7,7 +7,7 @@ function MenuItemCard({ item }) {
                 <h3 className='restaurant-menu__item-name'>{item.menu_item_name}</h3>
                 <span className='restaurant-menu__item-description'>{item.description}</span>
             </div>
-            <div className='restaurant-menu__price'>${item.price}</div>
+            <div className='restaurant-menu__price section-body'>${item.price}</div>
         </li>
     )
 }

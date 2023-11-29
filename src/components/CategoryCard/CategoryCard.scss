@@ -4,10 +4,11 @@
 .restaurant-menu {
 
     &__category-card {
-        border: .0625rem solid $peanut-black;
+        background-color: $peanut-white;
+        box-shadow: 0 0 1.5rem rgba(57, 50, 67, 0.5);
         border-radius: $border-radius-rounded;
-        padding: 1rem;
-        margin-bottom: 1rem;
+        padding: 2rem;
+        margin-bottom: 3rem;
     }
 
     &__category-heading {

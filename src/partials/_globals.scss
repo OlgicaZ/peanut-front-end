@@ -49,6 +49,10 @@
     font-size: 1rem;
     font-weight: 700;
 
+    &.white {
+        color: $peanut-beige;
+    }
+
     @include tablet {
         font-size: 1.125rem;
     }
@@ -93,4 +97,5 @@
     padding: .625rem 0.75rem;
     font-size: .9375rem;
     font-weight: 600;
+    cursor: grab;
 }
