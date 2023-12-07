@@ -23,6 +23,10 @@
         width: 35%;
         margin-right: .625rem;
         border-radius: $border-radius;
+
+        @include desktop {
+            width: 28%;
+        }
     }
 
     &__image {

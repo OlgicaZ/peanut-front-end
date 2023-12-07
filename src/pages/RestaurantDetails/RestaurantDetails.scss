@@ -1,7 +1,7 @@
 @use './../../partials/variables' as *;
 @use './../../partials/mixins' as *;
 
-body {
+#root {
     background-color: $peanut-beige;
     height: 100vh;
 }
@@ -24,6 +24,10 @@ body {
         padding-bottom: 2.5rem;
         position: relative;
         box-shadow: 0 0 1.5rem rgba(57, 50, 67, 0.5);
+
+        @include desktop {
+            height: 75vh;
+        }
     }
 
     &__back-button-container {
